@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Fullscreen Online Digital Clock</title>
+
+<meta name="description" content="Free fullscreen online digital clock for desktop and mobile screens." />
+<meta name="keywords" content="digital clock, fullscreen clock, online clock,time display" />
+
+<style>
+body {
+    margin:0;
+    height:100vh;
+    background:#000;
+    display:flex;
+    flex-direction:column;
+    color:#fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+}
+
+.nav {
+    text-align:center;
+    padding:10px;
+}
+
+.nav a {
+    color:#aaa;
+    text-decoration:none;
+    margin:0 10px;
+    font-size:14px;
+}
+
+#clockWrap{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#clock {
+    font-size:15vw;
+    font-weight:bold;
+    letter-spacing:0.3vw;
+    /* text-shadow:0 0 12px rgba(255,255,255,.5); */
+}
+
+.am-pm{
+    font-size:5vw;
+    vertical-align: super;
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+<a href="index.html">Clock</a> |
+<a href="about.html">About</a> |
+<a href="privacy-policy.html">Privacy Policy</a> |
+<a href="contact.html">Contact</a>
+</div>
+
+<div id="clockWrap">
+<div id="clock">00:00:00<span class="am-pm">AM</span></div>
+</div>
+
+<script>
+function updateClock(){
+    const now = new Date();
+
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+
+    const ampm = hours >= 12 ? "PM":"AM";
+
+    hours = hours % 12 || 12;
+
+    hours = String(hours).padStart(2,"0");
+    minutes = String(minutes).padStart(2,"0");
+    seconds = String(seconds).padStart(2,"0");
+
+    document.getElementById("clock").innerHTML =
+        `${hours}:${minutes}:${seconds}<span class="am-pm">${ampm}</span>`;
+}
+
+setInterval(updateClock,1000);
+updateClock();
+</script>
+
+</body>
+</html>
